@@ -1,7 +1,7 @@
 {
-  "name": "@webprog/project",
+  "name": "@webprog/cubing-timer",
   "version": "2025.spr",
-  "author": "Your Name <your@email>",
+  "author": "Nikolaus Lindinger <Nikolaus.Lindinger@stud.plus.ac.at>",
   "description": "Webprog Final Project",
   "license": "UNLICENSED",
   "private": true,

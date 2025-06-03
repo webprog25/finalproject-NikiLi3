@@ -1,26 +1,105 @@
 Webprog Final Project Proposal
 =============================
-<TODO: Fill in this proposal template and remove the TODOs (including the < >).>
 
-Project Title: <TODO: Come up with a name, or a short description will do>
-Your Name: <TODO>
+Project Title: Speed-Cubing Timer
+Your Name: Nikolaus Lindinger
 
 Description
 -----------
-<TODO: Tell us about your project idea. What will it do, how will it work. A paragraph or two should do. It may be helpful to include a "feature list" that details what users will be able to do in the app.>
+Speed-Cubing is a competitive hobby where the goal is to solve a Rubik's Cube or other related puzzles as fast as possible.
+
+Feature List:
+- Scramble generation:
+    * Fetches a new random scramble for different cube types
+    * Shows an image of the correctly scrambled cube
+    * Uses the official (World Cube Association) scramble generation tool written in Java (called TNoodle) which is hosted as a Lambda function in the AWS Cloud and can be used to fetch a new scramble over a REST API. NOTE: This REST API already exists and was created by me for an iOS Cubing Timer app.
+    * User selects a cube type (more specifically the event type) in a header bar from a dropdown list to switch events
+    * Saves the last event type as a browser cookie and automatically selects it
+    
+- Timing the solve:
+    * While solving the cube a timer is running on the screen
+    * After stopping the timer the time is visible on the screen
+
+- Storing the solves:
+    * The time of the solve and the corresponding scramble will be saved
+    * The list of past solves will be visible in a sidebar
+
+- Simple Statistics:
+    * Bottom of the screen will show Average of 5 (Avg5), Avg12 and Avg50
+
+- [Potential expansion if time permits; probably won't be possible]: Visualization
+    * Show a point cloud chart of all times in the selected event overlaid with a moving average of 5, 12 and 50
+
 
 Milestone(s)
 ------------
-<TODO: Talk a bit about the process you want to take, and what you'd like to have done by the check-in milestone. I won't hold you to that milestone; we just want you to be thinking about the order you'll be working on things. If there are any current or anticipated blockers (e.g. needing to get data from an external source or getting feedback on something), please identify those here too.>
+1. Create the html page (no CSS) with:
+    * header bar: in the middle a dropdown with the event type names aligned left and the count of saved solves aligned to the right in parenthesis
+    * a big timer in the middle (no functionality yet, should just display e.g. 00.00)
+
+2. Add CSS styling:
+    * header in a dark color; make dropdown large and use large font; dropdown should be in a lighter color; header always visible even when scrolling
+    * use white background and black timer text
+
+3. Add scrambles:
+    * Call the REST API and pass the currently selected event type
+    * Add html elements for a scramble (aligned in the center above the timer)
+    * Add the image of the scramble (use svg render library); align to the right
+    * Make the scramble image clickable to display it in a large overlay
+
+[Above milestones should be finished before the check-in]
+
+4. Add timer functionality:
+    * Timer should start counting when the user releases the space bar after pressing it for at least 1-3 (?) seconds.
+    * Timer counts upwards and shows seconds in the format 00.00 (two decimal places)
+    * Timer should use a monospace font
+    * Timer should switch to format 00:00.00 after one minute
+    * Timer should stop when pressing the space bar again (keep showing the last time)
+
+5. Persisting the solve:
+    * Finished solve (time, event type and scramble+image) should be sent to a REST backend which saves it to a MongoDB database (including a timestamp)
+    * The MongoDB database has a single document storing a solve with fields: (event_type, result, scramble_text, scramble_image, timestamp)
+
+6. Dropdown event count:
+    * Add a endpoint to the backend which returns the count of solves in each event (combine these counts with a list of all event names in the frontend)
+    * Show this amended dropdown in the dropdown
+    * Update the count of the currently selected event after each time is saved (positive response from the backend MongoDB call)
+
+7. Add Simple Statistics:
+    * When loading the page, switching events or after each solve update the frontend text fields for Avg5, Avg12 and Avg50
+    * Do not show the text fields when there are not enough solves to calculate that average
+    * Add CSS styling such that all displayed average fields use the full available width and are equally spaced
+
+8. Add list of past solves:
+    * Add html elements to show a scrollable list of previous solves
+    * Add a backend endpoint that fetches the last 1000 Solves of the selected event
+    * Use this endpoint to update the list
+
+[Below milestones are optional, if time permits]:
+
+9. Expand on past solves:
+    * Open a large overlay when clicking on a past solve from the list
+    * This overlay should display all information about that solve that is stored in the MongoDB
+
+10. Visualize statistics:
+    * Add a button to the frontend which opens a large overlay
+    * Overlay should contain a point cloud chart of saved times with lines for moving averages
+
 
 External libraries and code
 ---------------------------
-<TODO: Identify any external libraries or code you plan to use, and describe how it fits into your project. It's fine to say "None" here, and you can change your mind later.>
+External libraries:
+    * Frontend:
+        - Some SVG rendering library
+    * Backend for persisting storage with MongoDB:
+        - nothing special
+    * Already existing cloud hosted backend that generates scrambles:
+        - TNoodle Java Library (created by the World Cubing Association)
 
 Collaboration and resources
 ---------------------------
-<TODO: Identify any sources you plan to consult, except for code listed above. This might include getting feedback from users or getting data from an external source.>
+None
 
 Anything else?
 -------------
-<TODO: Anything else you'd like me to know?>
+None
