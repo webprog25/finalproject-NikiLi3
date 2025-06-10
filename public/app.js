@@ -45,15 +45,25 @@ function closeOverlay() {
     overlaySvg.innerHTML = '';
 }
 
-// Close overlay on Escape key
+// Close overlay on "ESC" key or fetch new scramble on "R"
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !overlay.classList.contains('hidden')) {
         closeOverlay();
+    } else if (event.key === 'r' || event.key === 'R') {
+        const eventType = document.getElementById('eventSelect').value;
+        fetchScramble(eventType);
     }
 });
 
-// Dropdown interaction
-document.getElementById('eventSelect').addEventListener('change', e => fetchScramble(e.target.value));
+// Save selected event to localStorage on change and fetch new scramble
+document.getElementById('eventSelect').addEventListener('change', (e) => {
+    const value = e.target.value;
+    localStorage.setItem('lastEvent', value);
+    fetchScramble(value);
+});
 
-// Initial scramble load
-fetchScramble(document.getElementById('eventSelect').value);
+
+// Load saved event from localStorage on page load
+const savedEvent = localStorage.getItem('lastEvent') || document.getElementById('eventSelect').value;
+document.getElementById('eventSelect').value = savedEvent;
+fetchScramble(savedEvent);
