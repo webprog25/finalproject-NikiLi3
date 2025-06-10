@@ -1,29 +1,30 @@
 Final Project Milestone
 ==============================
 
-Project Title: <TODO>
-Your Name: <TODO>
+Project Title: Speed-Cubing Timer
+Your Name: Nikolaus Lindinger
 
 Overview
 --------
-<TODO: Let me know how things are going. What have you explored, looked into, worked on, and tried so far? What do you have left to do? Are you running into any particular difficulties or blockers?>
+Making progress. One issue was working with the existing API (as explained in the proposal). It did not work due to CORS issues, which I was not able to resolve in the AWS console. Instead I had to redeploy the underlying Java project with an updated handler that adds the required response headers to avoid CORS blocking. Now it works.
+Another difficulty is adding a count aligned to the right into the dropdown. Standard select does not support this along with the event name. Will need bigger changes to add the counter.
 
 Project Changes
 ---------------
-<TODO: If you are planning to change something about your project (scope, features, etc.) from your proposal, please let me know what changes you're planning to make.>
+No changes planned at this point.
 
 Implementation Details
 ----------------------
-<TODO: Describe how you will implement (or have implemented) a specific feature or part of the project. Include specific details about the frontend (e.g. what classes you'll have and how the user interface will work) and backend (e.g. what API endpoints you'll use and how you'll store the data). As with the proposal, this can change later; I just want to make sure you've thought through some of these details.>
+Planning on using a local MongoDB, could also use one hosted in MongoDB Atlas for real persistency and ease of use.
 
 External libraries and code
 ---------------------------
-<TODO: Identify any external libraries or code you are using or plan to use, and describe how it fits into your project. Please include everything even if you already listed it in your proposal.>
+None. (Also no SVG library since this is supported by default)
 
 Collaboration and resources
 ---------------------------
-<TODO: Identify any sources you have consulted or plan to consult, except for code listed above. Include those you listed previously in your proposal.>
+None
 
 Anything else?
 --------------
-<TODO: Anything else you'd like me to know?>
+None

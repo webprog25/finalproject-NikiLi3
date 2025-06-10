@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>Final Project</title>
+    <title>Speed-Cubing Timer</title>
 
     <!-- This line provides automatic page and style reloading when files change -->
     <script type="module" src="/lib/client/updater.js"></script>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-  </body>
+
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="app.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Cubing Timer</h1>
+        <select id="eventSelect" class="dropdown">
+            <option value="TWO">2x2 Cube</option>
+            <option value="THREE" selected>3x3 Cube</option>
+            <option value="FOUR_FAST">4x4 Cube</option>
+            <option value="FIVE">5x5 Cube</option>
+            <option value="SIX">6x6 Cube</option>
+            <option value="SEVEN">7x7 Cube</option>
+            <option value="THREE_NI">3x3 Blindfolded</option>
+            <option value="THREE_FM">3x3 Fewest Moves</option>
+            <option value="THREE">3x3 One-Handed</option>
+            <option value="CLOCK">Clock</option>
+            <option value="MEGA">Megaminx</option>
+            <option value="PYRA">Pyraminx</option>
+            <option value="SKEWB">Skewb</option>
+            <option value="SQ1">Square-1</option>
+            <option value="FOUR_NI">4x4 Blindfolded</option>
+            <option value="FIVE_NI">5x5 Blindfolded</option>
+        </select>
+    </header>
+    <main>
+        <div class="scramble-container">
+            <div class="scramble-text">Fetching a new scramble...</div>
+            <div class="scramble-image"></div>
+        </div>
+
+        <h1 class="timer">00.00</h1>
+
+        <div class="overlay hidden" id="imageOverlay">
+            <article class="overlay-content" id="overlayContent" role="dialog" aria-modal="true">
+                <button class="close-button" id="closeButton" aria-label="Close">✕</button>
+                <div id="overlaySvg"></div>
+            </article>
+        </div>
+    </main>
+</body>
 </html>
