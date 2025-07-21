@@ -80,7 +80,7 @@ body {
     padding: 0 10px;
 }
 .scramble-text {
-    font-size: 24px;
+    font-size: 3rem;
     font-family: 'Courier New', monospace;
     font-weight: bold;
     text-align: center;
@@ -95,9 +95,21 @@ body {
 
 .timer {
     color: black;
-    font-size: 48px;
+    font-size: 8rem;
     font-family: Arial, sans-serif;
     text-align: center;
+}
+
+.timer.idle {
+    color: black;
+}
+
+.timer.holding {
+    color: #8b0000;
+}
+
+.timer.ready {
+    color: #006400;
 }
 
 /* Large scramble overlay styling */

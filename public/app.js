@@ -1,3 +1,5 @@
+import { setupTimer } from './timer.js';
+
 async function fetchScramble(eventType) {
     const scrambleText = document.querySelector('.scramble-text');
     const scrambleImage = document.querySelector('.scramble-image');
@@ -67,3 +69,10 @@ document.getElementById('eventSelect').addEventListener('change', (e) => {
 const savedEvent = localStorage.getItem('lastEvent') || document.getElementById('eventSelect').value;
 document.getElementById('eventSelect').value = savedEvent;
 fetchScramble(savedEvent);
+
+// Init timer
+setupTimer(
+    document.querySelector('.timer'),
+    () => document.getElementById('eventSelect').value,
+    fetchScramble
+);
