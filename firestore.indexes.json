@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "solves",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "puzzleType",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ]
+}

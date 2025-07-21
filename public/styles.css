@@ -171,3 +171,30 @@ body {
     color: #000;
     z-index: 10;
 }
+
+#averagesFooter {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    color: black;
+    font-size: 1.5rem;
+}
+
+.avg-item {
+    flex: 1;
+    text-align: center;
+}
+
+.avg-label {
+    font-weight: normal;
+}
+
+.avg-time {
+    font-weight: bold;
+}

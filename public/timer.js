@@ -1,4 +1,4 @@
-export function setupTimer(timerDisplayElement, getCurrentEventType, fetchScrambleFn) {
+export function setupTimer(timerDisplayElement, getCurrentEventType, fetchScrambleFn, onSolveComplete) {
     // Timer states
     const TimerState = {
         IDLE: 'IDLE',
@@ -74,7 +74,16 @@ export function setupTimer(timerDisplayElement, getCurrentEventType, fetchScramb
     function stopTimer() {
         clearInterval(timerInterval);
         timerInterval = null;
+        const elapsed = Date.now() - startTime;
+        timerDisplayElement.textContent = formatTime(elapsed);
         setTimerState(TimerState.IDLE);
+
+        // Invoke callback to persist solve (if provided)
+        if (onSolveComplete) {
+            onSolveComplete(elapsed);
+        }
+
+        // Fetch new scramble for next solve
         const eventType = getCurrentEventType();
         if (eventType && fetchScrambleFn) {
             fetchScrambleFn(eventType);
