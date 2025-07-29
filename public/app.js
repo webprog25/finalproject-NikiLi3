@@ -68,6 +68,9 @@ eventSelect.addEventListener('change', (e) => {
     fetchScramble(value);
     manager.initRealTimeListener(value, updateAverages);
     updateAverages(); // Immediate update
+
+    // Unfocus the dropdown to prevent space bar interference with timer
+    e.target.blur();
 });
 
 // Load saved event from localStorage on page load
