@@ -40,6 +40,13 @@ const overlaySvg = document.getElementById('overlaySvg');
 const closeButton = document.getElementById('closeButton');
 closeButton.addEventListener('click', closeOverlay);
 
+// Close overlay when clicking outside the popup
+overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+        closeOverlay();
+    }
+});
+
 export function openOverlay(svg) {
     overlaySvg.innerHTML = svg;
     overlay.classList.remove('hidden');
