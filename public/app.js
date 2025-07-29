@@ -9,7 +9,9 @@ async function fetchScramble(eventType) {
     scrambleImage.onclick = null;
 
     try {
-        const response = await fetch(`https://od5tvdqc5i.execute-api.eu-central-1.amazonaws.com/dev/scramble?event=${eventType}`, {
+        // 3x3 One-Handed uses same scrambles as regular 3x3
+        const scrambleType = eventType === 'THREE_OH' ? 'THREE' : eventType;
+        const response = await fetch(`https://od5tvdqc5i.execute-api.eu-central-1.amazonaws.com/dev/scramble?event=${scrambleType}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
