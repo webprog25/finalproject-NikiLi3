@@ -177,7 +177,7 @@ async function initAfterAuth() {
     eventCounts[ev] = 0;
   });
 
-  const savedEvent = localStorage.getItem('lastEvent') || 'THREE_OH';
+  const savedEvent = localStorage.getItem('lastEvent') || 'THREE';
 
   eventSelect.value = savedEvent;
   fetchScramble(savedEvent);
