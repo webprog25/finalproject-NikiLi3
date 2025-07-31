@@ -5,7 +5,7 @@
     <title>Speed-Cubing Timer</title>
 
     <!-- This line provides automatic page and style reloading when files change -->
-    <script type="module" src="/lib/client/updater.js"></script>
+    <!-- <script type="module" src="/lib/client/updater.js"></script> -->
 
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="app.js"></script>
@@ -21,15 +21,12 @@
             <option value="SIX">6x6 Cube</option>
             <option value="SEVEN">7x7 Cube</option>
             <option value="THREE_NI">3x3 Blindfolded</option>
-            <option value="THREE_FM">3x3 Fewest Moves</option>
             <option value="THREE_OH">3x3 One-Handed</option>
             <option value="CLOCK">Clock</option>
             <option value="MEGA">Megaminx</option>
             <option value="PYRA">Pyraminx</option>
             <option value="SKEWB">Skewb</option>
             <option value="SQ1">Square-1</option>
-            <option value="FOUR_NI">4x4 Blindfolded</option>
-            <option value="FIVE_NI">5x5 Blindfolded</option>
         </select>
     </header>
     <main>
@@ -48,7 +45,48 @@
         </div>
     </main>
     <footer id="averagesFooter">
-        <!-- Averages will be dynamically added here -->
+        <div class="avg-item hidden" id="mo3Item">
+            <span class="avg-label">MO3: </span>
+            <span class="avg-time" id="mo3Time">--</span>
+        </div>
+        <div class="avg-item hidden" id="avg5Item">
+            <span class="avg-label">AVG5: </span>
+            <span class="avg-time" id="avg5Time">--</span>
+        </div>
+        <div class="avg-item hidden" id="avg12Item">
+            <span class="avg-label">AVG12: </span>
+            <span class="avg-time" id="avg12Time">--</span>
+        </div>
+        <div class="avg-item hidden" id="avg50Item">
+            <span class="avg-label">AVG50: </span>
+            <span class="avg-time" id="avg50Time">--</span>
+        </div>
     </footer>
+
+    <!-- User Authentication Popup -->
+    <div class="auth-overlay hidden" id="authOverlay">
+        <div class="auth-popup">
+            <h2>Welcome to Cubing Timer</h2>
+            <p>Choose how you want to proceed:</p>
+            <div class="auth-buttons">
+                <button id="createUserBtn" class="auth-btn primary">Create New User</button>
+                <button id="importUserBtn" class="auth-btn secondary">Import Existing User</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import User Dialog -->
+    <div class="auth-overlay hidden" id="importOverlay">
+        <div class="auth-popup">
+            <h2>Import User</h2>
+            <label for="userIdInput">Enter userId:</label>
+            <input type="text" id="userIdInput" class="user-id-input" placeholder="Enter your user ID">
+            <div id="importError" class="error-message hidden">UserId does not exist</div>
+            <div class="auth-buttons">
+                <button id="importConfirmBtn" class="auth-btn primary">Import User</button>
+                <button id="importCancelBtn" class="auth-btn cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

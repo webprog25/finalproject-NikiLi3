@@ -227,3 +227,127 @@ body {
 .avg-time {
     font-weight: bold;
 }
+
+/* Authentication Popup Styles */
+.auth-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 3000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.auth-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.auth-popup {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 90vw;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.auth-popup h2 {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.auth-popup p {
+    margin: 0 0 1.5rem 0;
+    color: #666;
+    font-size: 1rem;
+}
+
+.auth-popup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+    text-align: left;
+}
+
+.user-id-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.user-id-input:focus {
+    outline: none;
+    border-color: #2E4B2E;
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.auth-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.auth-btn.primary {
+    background-color: #2E4B2E;
+    color: white;
+}
+
+.auth-btn.primary:hover {
+    background-color: #1e3a1e;
+}
+
+.auth-btn.secondary {
+    background-color: #999;
+    color: white;
+}
+
+.auth-btn.secondary:hover {
+    background-color: #777;
+}
+
+.auth-btn.cancel {
+    background-color: #dc3545;
+    color: white;
+}
+
+.auth-btn.cancel:hover {
+    background-color: #c82333;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+
+.error-message.hidden {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
