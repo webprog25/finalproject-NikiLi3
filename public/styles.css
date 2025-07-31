@@ -21,9 +21,9 @@ header {
     h1 {
         position: absolute;
         left: 3rem;
-        margin: 0;
-        font-size: x-large;
-    }
+    margin: 0;
+    font-size: x-large;
+}
 }
 
 main {
@@ -119,6 +119,13 @@ body {
     .scramble-text {
         max-width: 85vw;
         font-size: clamp(0.8rem, min(4vw, 3vh), 3rem);
+    }
+}
+
+/* Hide header title on smaller screens (phones and small tablets) */
+@media (max-width: 48rem) {
+    header h1 {
+        display: none;
     }
 }
 

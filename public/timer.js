@@ -21,6 +21,11 @@ export function setupTimer(timerDisplayElement, getCurrentEventType, fetchScramb
     let spacePressTime = null;
     let holdTimeout = null;
 
+    // Touch handling variables
+    let touchHeld = false;
+    let touchStartTime = null;
+    let touchHoldTimeout = null;
+
     /**
      * Formats elapsed time in milliseconds to a display string
      * @param {number} elapsedMs - Time in milliseconds
@@ -133,6 +138,46 @@ export function setupTimer(timerDisplayElement, getCurrentEventType, fetchScramb
         spacePressTime = null;
     }
 
+    function handleTouchStart(event) {
+        // Prevent default to avoid triggering mouse events
+        event.preventDefault();
+
+        if (currentState === TimerState.RUNNING) {
+            stopTimer();
+            return;
+        }
+
+        if (!touchHeld) {
+            touchHeld = true;
+            touchStartTime = Date.now();
+            setTimerState(TimerState.HOLDING);
+
+            touchHoldTimeout = setTimeout(() => {
+                if (touchHeld && currentState === TimerState.HOLDING) {
+                    setTimerState(TimerState.READY);
+                }
+            }, 500);
+        }
+    }
+
+    function handleTouchEnd(event) {
+        event.preventDefault();
+
+        clearTimeout(touchHoldTimeout);
+        touchHoldTimeout = null;
+
+        if (!touchHeld) return;
+
+        if (currentState === TimerState.READY) {
+            startTimer();
+        } else {
+            setTimerState(TimerState.IDLE);
+        }
+
+        touchHeld = false;
+        touchStartTime = null;
+    }
+
     // Initialize timer
     timerDisplayElement.textContent = '0.00';
     setTimerState(TimerState.IDLE);
@@ -141,11 +186,20 @@ export function setupTimer(timerDisplayElement, getCurrentEventType, fetchScramb
     document.addEventListener('keydown', handleSpacebarKeyDown);
     document.addEventListener('keyup', handleSpacebarKeyUp);
 
+    // Add touch event listeners to the timer element
+    timerDisplayElement.addEventListener('touchstart', handleTouchStart, { passive: false });
+    timerDisplayElement.addEventListener('touchend', handleTouchEnd, { passive: false });
+    timerDisplayElement.addEventListener('touchcancel', handleTouchEnd, { passive: false });
+
     // Return cleanup function
     return () => {
         document.removeEventListener('keydown', handleSpacebarKeyDown);
         document.removeEventListener('keyup', handleSpacebarKeyUp);
+        timerDisplayElement.removeEventListener('touchstart', handleTouchStart);
+        timerDisplayElement.removeEventListener('touchend', handleTouchEnd);
+        timerDisplayElement.removeEventListener('touchcancel', handleTouchEnd);
         clearInterval(timerInterval);
         clearTimeout(holdTimeout);
+        clearTimeout(touchHoldTimeout);
     };
 }
