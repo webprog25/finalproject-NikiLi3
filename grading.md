@@ -24,4 +24,4 @@
 
 ## Notes:
 
-Great job, the only critique I have is that the code in app.js should be organized in a class. You have utilized an external API, developed by you. However, you could have implemented a simple backend by yourself, which establishes communication with the other backend. I have to reduce the points in this category a little bit, to be fair. I think you invested a lot of time in the frontend and the project is very advanced. So I am fine with it.
+Great job, the only critique I have is that the code in app.js should be organized in a class. You have utilized an external API, developed by you. However, you could have implemented a simple backend by yourself, which establishes communication with the other backend. I have to reduce the points in this category a little bit, to be fair. I think you invested a lot of time in the frontend and the project is very advanced. So I am fine with it. I really like your final project, the documentation is very good.
